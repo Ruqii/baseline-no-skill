@@ -2,7 +2,7 @@ name: baseline-no-skill-claude-opus-4-8
 cmd: uv run ../solution.py --provider anthropic --model claude-opus-4-8
 profile:
   model: claude-opus-4-8
-  framework: none
+  framework: anthropic-api
 timeout: 300
 tasks:
   python-bugfix-diff:
