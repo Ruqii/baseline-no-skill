@@ -1,16 +1,16 @@
 """No-skill baseline for the code_review_skill/python_bugfix_diff task.
 
-Deliberately the opposite of the other 3 solutions: no SKILL.md, no
-reference files, no system prompt at all. question.txt is already a
-fully self-contained task specification (role framing + the exact JSON
-output format), so this sends it verbatim as the only message and lets
-the base model answer with whatever general code-review ability it has
-out of the box.
+No SKILL.md, no reference files, no system prompt at all. question.txt
+is already a fully self-contained task specification (role framing + the
+exact JSON output format), so this sends it verbatim as the only message
+and lets the base model answer with whatever general code-review ability
+it has out of the box.
 
-Purpose: isolate the marginal value the 3 community skills add. If a
-skill scores no higher than this baseline, the skill isn't earning its
-keep for this kind of review; if it scores meaningfully higher, that's
-real evidence the skill's methodology/reference material helps.
+Purpose: isolate the marginal value any code-review skill solution adds
+over a bare model. If a skill scores no higher than this baseline, the
+skill isn't earning its keep for this kind of review; if it scores
+meaningfully higher, that's real evidence the skill's methodology/
+reference material helps.
 """
 from __future__ import annotations
 
