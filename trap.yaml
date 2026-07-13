@@ -1,4 +1,4 @@
-name: code-review-skill-baseline
+name: baseline-no-skill
 profile:
   model: [claude-opus-4-8]
   framework: [none]

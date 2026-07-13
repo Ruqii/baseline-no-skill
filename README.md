@@ -1,4 +1,4 @@
-# code-review-skill-baseline
+# baseline-no-skill
 
 No-skill baseline for [`python_bugfix_diff`](https://trapstreet.run/tasks/python-bugfix-diff).
 
