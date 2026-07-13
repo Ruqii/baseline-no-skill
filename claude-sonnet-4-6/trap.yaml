@@ -1,0 +1,9 @@
+name: baseline-no-skill-claude-sonnet-4-6
+cmd: uv run ../solution.py --provider anthropic --model claude-sonnet-4-6
+profile:
+  model: claude-sonnet-4-6
+  framework: none
+timeout: 300
+tasks:
+  python-bugfix-diff:
+    source: ../../../trapstreet-tasks/tasks/code_review_skill/python_bugfix_diff

@@ -12,5 +12,30 @@ be compared against this floor. If a skill doesn't score meaningfully higher
 than this, it isn't earning its keep — it's just a differently-worded prompt
 around a model that would've done the same thing anyway.
 
-Model is set via `.env` (`MODEL=claude-opus-4-8` by default) — match it to
-whatever you're comparing against.
+## Layout
+
+```
+solution.py                 # shared: reads question.txt, calls the provider API, prints the answer
+claude-opus-4-8/trap.yaml   # Anthropic API, claude-opus-4-8
+claude-sonnet-4-6/trap.yaml # Anthropic API, claude-sonnet-4-6
+gpt-5.6-luna-pro/trap.yaml  # OpenRouter, openai/gpt-5.6-luna-pro
+```
+
+Each variant is a subdirectory holding only a `trap.yaml`. The provider and
+model are literal CLI arguments on the `cmd:` line (`--provider`, `--model`)
+— not an env var — so `profile.model` (the self-reported field shown on the
+leaderboard) and the model actually used can never drift out of sync.
+
+## Running
+
+Requires [trap](https://github.com/trapstreet/trap) (`tp`) and `uv`
+(`solution.py` declares its `anthropic`/`openai` dependencies via PEP 723
+inline script metadata — no separate `pyproject.toml`/`uv.lock` needed).
+Credentials come from `.env` via direnv — copy `.env.example` to `.env` and
+fill in `ANTHROPIC_API_KEY` and `OPENROUTER_API_KEY`.
+
+```bash
+tp run --solution claude-opus-4-8    # or: cd claude-opus-4-8 && tp run
+```
+
+Each variant keeps its own `.trap/` workspace with per-run reports.
