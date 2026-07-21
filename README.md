@@ -19,6 +19,7 @@ solution.py                 # shared: reads question.txt, calls the provider API
 claude-opus-4-8/trap.yaml   # Anthropic API, claude-opus-4-8
 claude-sonnet-4-6/trap.yaml # Anthropic API, claude-sonnet-4-6
 gpt-5.6-luna-pro/trap.yaml  # OpenRouter, openai/gpt-5.6-luna-pro
+kimi-k3/trap.yaml           # OpenRouter, moonshotai/kimi-k3
 ```
 
 Each variant is a subdirectory holding only a `trap.yaml`. The provider and
@@ -35,7 +36,12 @@ Credentials come from `.env` via direnv — copy `.env.example` to `.env` and
 fill in `ANTHROPIC_API_KEY` and `OPENROUTER_API_KEY`.
 
 ```bash
-tp run --solution claude-opus-4-8    # or: cd claude-opus-4-8 && tp run
+tp run ./claude-opus-4-8 --task python-bugfix-diff --trust-remote
 ```
 
-Each variant keeps its own `.trap/` workspace with per-run reports.
+`--trust-remote` is needed since the task is now sourced from a pinned
+git+URL (see `trap.yaml`) rather than a local path — see the top-level
+`trapstreet-solution-scaffold` skill for why it's pinned to an exact
+commit SHA rather than tracking the shared task repo's `main` branch.
+Each variant keeps its own workspace (`.trap/runs/<solution>/...`) with
+per-run reports.
